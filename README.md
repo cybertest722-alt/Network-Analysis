@@ -40,7 +40,7 @@ Analysed two PCAP files to:
 
 ### 2️⃣ TCPDump Activity – Command-Line Network Analysis
 Used **TCPDump** to capture and analyze packets directly from the terminal:
-- Applied capture filters (`tcp`, `udp`, `port 80`, `host 192.168.1.10`)  
+- Applied capture filters (`tcp`, `udp`, `port 80`)  
 - Extracted metadata and protocol statistics from PCAPs  
 - Verified specific communications between endpoints  
 - Practiced command-line traffic analysis for real-world SOC workflows  
@@ -85,7 +85,7 @@ Investigated a malicious PCAP to uncover evidence of compromise:
 
 **Wireshark Display Filters:**
 
-- ip.addr == 192.168.1.10
+- ip.addr == 192.168.1.103
 - http.request
 - tcp.flags.syn == 1
 - dns.qry.name contains "malicious"
