@@ -1,4 +1,4 @@
-# Network Analysis Practical Project
+# Network Analysis and Forensics Project
 
 ## Overview
 This project demonstrates hands-on **network traffic analysis** using both **Wireshark** and **TCPDump**. The exercises focus on capturing, filtering, and investigating real-world network packets, as well as performing deep inspection of a **malicious PCAP file**.  
@@ -29,10 +29,10 @@ The goal of this practical is to showcase professional skills in **Blue Team net
 
 ### 1️⃣ Wireshark Activity – Traffic Analysis
 Analysed two PCAP files to:
-- Identify source and destination hosts  
-- Filter packets using display filters (`ip.src`, `tcp.port`, `http.request`, etc.)  
-- Trace TCP streams and reconstruct HTTP sessions  
-- Detect abnormal or suspicious traffic patterns  
+- Identified source and destination hosts  
+- Filtered packets using display filters (`ip.src`, `tcp.port`, `http.request`, etc.)  
+- Traced TCP streams and reconstruct HTTP sessions  
+- Detected abnormal or suspicious traffic patterns  
 
 **Skills demonstrated:** Protocol dissection, filtering, conversation tracking, and traffic visualization.
 
@@ -48,9 +48,13 @@ Used **TCPDump** to capture and analyze packets directly from the terminal:
 ---
 
 **Example Commands:**
-- tcpdump -i eth0 -w capture.pcap
-- tcpdump -r capture.pcap tcp and port 443
-- tcpdump -nnvvXSs 0 -r capture.pcap | grep "SYN"
+- tcpdump -r SBT-PCAP4.pcap udp --count
+- tcpdump -A -r SBT-PCAP5.pcap | grep png 
+- tcpdump -r SBT-PCAP4.pcap -vvv | grep -i chrome
+- tcpdump ip[8] == 38 -r SBT-PCAP4.pcap --count
+- tcpdump -vv -r SBT-PCAP5.pcap | grep OpenSSH 
+- tcpdump -r SBT-PCAP4.pcap 'tcp[tcpflags] == 18' | wc -l
+- tcpdump -v -r SBT-PCAP5.pcap | grep -i '0xcfd3' -B 1
 
 ---
 
@@ -85,10 +89,13 @@ Investigated a malicious PCAP to uncover evidence of compromise:
 
 **Wireshark Display Filters:**
 
-- ip.addr == 192.168.1.103
-- http.request
-- tcp.flags.syn == 1
+- http.request.uri
+- tcp.stream eq 2074
+- dns.flags.response == True
 - dns.qry.name contains "malicious"
+- ftp and ip.src == 192.168.56.1
+- ip.addr == 192.168.1.6 && udp.port == 3942
+
 
 ---
 
